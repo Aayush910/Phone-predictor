@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <title>Upload Image</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="{% static 'css/upload.css' %}">
+</head>
+<body>
+
+    <h1>Upload an Image</h1>
+    <div id="box">
+        <form method="POST" action="{% url 'upload_image' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <label for="file-upload" id="file-label">Choose an image</label>
+            <input id="file-upload" type="file" name="image" accept="image/*" required>
+            <p id="file-name">No file chosen</p>
+
+            <button type="submit" id="submit-btn">Submit</button>
+
+            <div id="loader" class="loader" style="display: none;"></div>
+        </form>
+    </div>
+
+    <script src="{% static 'js/script.js' %}"></script>
+
+</body>
+</html>

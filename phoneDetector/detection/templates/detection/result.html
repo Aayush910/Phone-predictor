@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{% static 'css/result.css' %}">
+</head>
+<body>
+    <h1>Prediction Result</h1>
+    
+    <div id="box">
+        <img src="{{ image_url }}" alt="Uploaded Image" width="100%" />
+        
+        <p class="info-text">Accuracy: <strong>{{ accuracy }}%</strong></p>
+        <p class="info-text">Category: <strong>{{ category }}</strong></p>
+
+        <form method="POST" action="{% url 'upload_image' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input id="file-upload" type="file" name="image" accept="image/*" required hidden>
+            <label for="file-upload" id="custom-file-label">Upload another Image</label>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
